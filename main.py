@@ -1,18 +1,17 @@
+import sys
+
 from commands.install import InstallCommand
 from commands.tweak import TweakCommand
+from data.programs import NATIVE_PROGRAMS
+from data.programs import FLATPAK_PROGRAMS
+from data.tweaks import TWEAKS
 from services.apply import ApplyService
+from ui.app import WyvernTool
 
-native_installs = InstallCommand("sudo dnf install -y")
-flatpak_installs = InstallCommand("sudo flatpak install -y")
-system_tweaks = TweakCommand()
+install_native = InstallCommand("pkexec dnf install -y")
+install_flatpak = InstallCommand("pkexec flatpak install -y")
+tweak_command = TweakCommand()
+service = ApplyService([install_native, install_flatpak, tweak_command])
 
-native_installs.toggle("steam", ["steam"], True)
-native_installs.run()
-native_installs.toggle("steam", ["steam"], False)
-
-system_tweaks.toggle("echo", "echo command 1", True)
-system_tweaks.toggle("echo2", "echo command 2", True)
-
-service = ApplyService([native_installs, flatpak_installs, system_tweaks])
-
-service.run_commands()
+app = WyvernTool(install_native, install_flatpak, tweak_command, NATIVE_PROGRAMS, FLATPAK_PROGRAMS, TWEAKS, service)
+sys.exit(app.run(sys.argv))
