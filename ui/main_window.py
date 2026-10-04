@@ -11,24 +11,17 @@ class MainWindow(Adw.ApplicationWindow):
         super().__init__(**kwargs)
         self.set_title("WyvernTool")
         self.set_default_size(800, 600)
-        self.install_native = install_native
-        self.install_flatpak = install_flatpak
-        self.tweak_command = tweak_command
         self.service = service
-        self.native_programs = native_programs
-        self.flatpak_programs = flatpak_programs
-        self.tweak_list = tweak_list
 
         tabs = [
             ("install", "Install", "system-software-install-symbolic"),
             ("tweaks", "Tweaks", "applications-system-symbolic"),
-            # Not sure if I want to make a customization tab yet
-            #("customize", "Customize", "preferences-desktop-appearance-symbolic")
+            ("Rice", "We're gonna rice it!", "preferences-desktop-appearance-symbolic")
         ]
 
         views = {
-            "install": InstallView(self.install_native, self.install_flatpak, self.native_programs, self.flatpak_programs),
-            "tweaks": TweakView(self.tweak_command, self.tweak_list)
+            "install": InstallView(install_native, install_flatpak, native_programs, flatpak_programs),
+            "tweaks": TweakView(tweak_command, tweak_list)
         }
 
         stack = Adw.ViewStack()
@@ -43,14 +36,13 @@ class MainWindow(Adw.ApplicationWindow):
         switcher.set_stack(stack)
         switcher.set_policy(Adw.ViewSwitcherPolicy.WIDE)
 
-        install_button = Gtk.Button(label="Install")
+        install_button = Gtk.Button(label="Apply")
         install_button.add_css_class("suggested-action")
         install_button.connect("clicked", self.on_apply_clicked)
 
         header = Adw.HeaderBar()
         header.set_title_widget(switcher)
         header.pack_end(install_button)
-        #content = Gtk.Label(label="Window Content")
 
         layout = Adw.ToolbarView()
         layout.add_top_bar(header)

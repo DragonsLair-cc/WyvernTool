@@ -4,7 +4,6 @@ class TweakView(Adw.PreferencesPage):
     def __init__(self, tweak_command, tweak_list):
         super().__init__()
         self.tweak_command = tweak_command
-        self.tweak_list = tweak_list
 
         for name, tweaks in tweak_list.items():
             group = Adw.PreferencesGroup(title=name)

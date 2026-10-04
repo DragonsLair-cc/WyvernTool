@@ -6,13 +6,14 @@ class InstallView(Adw.PreferencesPage):
         self.install_native = install_native
         self.install_flatpak = install_flatpak
 
-        group = Adw.PreferencesGroup(title = "Native Packages")
-        self.add(group)
+        for category, packages_dict in native_programs.items():
+            group = Adw.PreferencesGroup(title = category)
+            self.add(group)
 
-        for name, packages in native_programs.items():
-            row = Adw.SwitchRow(title = name)
-            row.connect("notify::active", self.native_on_toggled, name, packages)
-            group.add(row)
+            for name, packages in packages_dict.items():
+                row = Adw.SwitchRow(title = name)
+                row.connect("notify::active", self.native_on_toggled, name, packages)
+                group.add(row)
 
         group = Adw.PreferencesGroup(title = "Flatpak Packages")
         self.add(group)
