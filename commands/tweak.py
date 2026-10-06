@@ -4,8 +4,10 @@ class TweakCommand(Command):
     def __init__(self):
         super().__init__()
 
-    def main_command(self):
+    def build_command(self):
         tweak_list = []
         for tweaks in self.selected.values():
-            tweak_list.append(tweaks.split())
-        return tweak_list
+            for tweak in tweaks:
+                tweak_list.append(tweak)
+            chained_command = " && ".join(tweak_list)
+        return ["pkexec", "sh", "-c", chained_command]

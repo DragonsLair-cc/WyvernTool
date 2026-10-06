@@ -16,7 +16,7 @@ class MainWindow(Adw.ApplicationWindow):
         tabs = [
             ("install", "Install", "system-software-install-symbolic"),
             ("tweaks", "Tweaks", "applications-system-symbolic"),
-            ("Rice", "We're gonna rice it!", "preferences-desktop-appearance-symbolic")
+            #("rice", "We're gonna rice it!", "preferences-desktop-appearance-symbolic")
         ]
 
         views = {
@@ -32,17 +32,17 @@ class MainWindow(Adw.ApplicationWindow):
                 view = placeholder_menu(title, icon)
             stack.add_titled_with_icon(view, view_id, title, icon)
 
-        switcher = Adw.ViewSwitcher()
-        switcher.set_stack(stack)
-        switcher.set_policy(Adw.ViewSwitcherPolicy.WIDE)
+        view_switcher = Adw.ViewSwitcher()
+        view_switcher.set_stack(stack)
+        view_switcher.set_policy(Adw.ViewSwitcherPolicy.WIDE)
 
-        install_button = Gtk.Button(label="Apply")
-        install_button.add_css_class("suggested-action")
-        install_button.connect("clicked", self.on_apply_clicked)
+        apply_button = Gtk.Button(label="Apply")
+        apply_button.add_css_class("suggested-action")
+        apply_button.connect("clicked", self.on_apply_clicked)
 
         header = Adw.HeaderBar()
-        header.set_title_widget(switcher)
-        header.pack_end(install_button)
+        header.set_title_widget(view_switcher)
+        header.pack_end(apply_button)
 
         layout = Adw.ToolbarView()
         layout.add_top_bar(header)

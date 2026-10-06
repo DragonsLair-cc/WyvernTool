@@ -8,8 +8,8 @@ from data.tweaks import TWEAKS
 from services.apply import ApplyService
 from ui.app import WyvernTool
 
-install_native = InstallCommand("pkexec dnf install -y")
-install_flatpak = InstallCommand("pkexec flatpak install -y")
+install_native = InstallCommand("dnf install -y")
+install_flatpak = InstallCommand("flatpak install -y")
 tweak_command = TweakCommand()
 service = ApplyService([install_native, install_flatpak, tweak_command])
 

@@ -7,16 +7,29 @@ NATIVE_PROGRAMS = {
         "Discord": ["discord"]
     },
     "Gaming": {
-        "Steam": ["steam"]
+        "Steam": ["steam"],
+        "Lutris": ["lutris"],
+        "Envision": ["envision", "monado"],
+        "WiVRn": ["wivrn"]
     },
     "Editors": {
-        "Vim": ["vim"]
+        "Nano": ["nano"],
+        "Vim": ["vim"],
+        "Neovim": ["neovim"],
+        "Emacs": ["emacs"],
+        "Micro": ["micro"]
     },
     "Tools": {
-        "Blender": ["blender"]
+        "Blender": ["blender"],
+        "GIMP": ["gimp"],
+        "VLC": ["vlc"],
+        "Htop": ["htop"]
     }
 }
 
 FLATPAK_PROGRAMS = {
+    "OnlyOffice": ["onlyoffice"],
+    "Unity Hub": ["unityhub"],
+    "Mission Center": ["missioncenter"],
     "Modrinth": ["modrinth"]
 }
