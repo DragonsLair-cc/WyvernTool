@@ -15,8 +15,8 @@ class MainWindow(Adw.ApplicationWindow):
 
         tabs = [
             ("native_install", "Install", "system-software-install-symbolic"),
-            ("flatpak_install", "Flatpaks", "flatpak-install-symbolic"),
-            ("tweaks", "Tweaks", "tweak-symbolic")
+            ("flatpak_install", "Flatpaks", "system-software-install-symbolic"),
+            ("tweaks", "Tweaks", "applications-system-symbolic")
         ]
 
         views = {
